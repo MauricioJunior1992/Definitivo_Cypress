@@ -1,11 +1,12 @@
 /// <reference types = 'cypress' />
+import produtosPage from "../../support/page-objects/produtos.page";
 
 describe('Funcionalidade: Login', () => {
 
     beforeEach(() => {
         //cy.visit('http://lojaebac.ebaconline.art.br/produtos')
-        
-        cy.visit('produtos')
+        //cy.visit('produtos')
+        produtosPage.visitarUrl()
 
     });
 
@@ -34,6 +35,33 @@ describe('Funcionalidade: Login', () => {
         cy.get('.woocommerce-message').should('contain','foram adicionados no seu carrinho') //nesse caso a mensagem está no plural
     });
 
+    it('Deve buscar um produto na lista com sucesso - Usando Page Objects', () => {
+        produtosPage.buscarProdutoLista('Aero Daily Fitness Tee')
+        cy.get('.product_title').should('contain','Aero Daily Fitness Tee')
+    });
 
+    it('Deve buscar um produto com sucesso através da barra de pesquisa - Usando Page Objects', () => {
+        var produto = 'Aero Daily Fitness Tee'
+
+        //produtosPage.buscarProduto('Aero Daily Fitness Tee')
+        //cy.get('.product_title').should('contain', 'Aero Daily Fitness Tee')
+        produtosPage.buscarProduto(produto)
+        cy.get('.product_title').should('contain', produto)
+    })
+
+    it('Deve visitar produto com sucesso - Usando Page Objects', () => {
+        produtosPage.visitarPaginaProduto('Aero Daily Fitness Tee')
+        cy.get('.product_title').should('contain', 'Aero Daily Fitness Tee')
+    });
+
+    it('Deve adicionar o produto no carrinho - Usando Massa de Dados em lista', () => {
+        var produto = 'Aero Daily Fitness Tee'
+        var quantidade = '4'
+
+        produtosPage.buscarProduto(produto)
+        cy.get('.product_title').should('contain', produto)
+        produtosPage.addProdutoCarrinho('M', 'Brown', quantidade)
+        cy.get('.woocommerce-message').should('contain',quantidade + ' × “Aero Daily Fitness Tee” foram adicionados no seu carrinho.')
+    });
 
 });

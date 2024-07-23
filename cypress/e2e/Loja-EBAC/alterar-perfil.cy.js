@@ -43,9 +43,10 @@ describe('Funcionalidade: Alterar perfil', () => {
     });
 
     it('Deve alterar perfil com sucesso - Usando Comandos Customizados', () => {
-        cy.get('#username').type(login.email)
-        cy.get('#password').type(login.senha)
-        cy.get('.woocommerce-form > .button').click()
+        //cy.get('#username').type(login.email)
+        //cy.get('#password').type(login.senha)
+        //cy.get('.woocommerce-form > .button').click()
+        cy.login('mauricioteste1992@teste.com','mauricioteste') //login via comando customizado
         cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
         cy.alteracoes('Mauricio', 'Junior', 'Mauricio Junior')
         //cy.alteracoes(faker.person.firstName(), faker.person.lastName(), faker.internet.userName())

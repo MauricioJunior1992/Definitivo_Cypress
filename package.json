@@ -4,7 +4,8 @@
   "description": "Projeto Cypress definitivo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx cypress run --browser chrome",
+    "cy:dash" : "npx cypress run --record --key 6db40146-c2a7-4f0c-984e-7164a97bfe3f"
   },
   "keywords": [],
   "author": "",

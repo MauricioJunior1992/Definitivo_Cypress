@@ -47,7 +47,7 @@ describe('Funcionalidade: Cadastro', () => {
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá')
     });
 
-    it.only('Deve fazer cadastro com sucesso - Usando Comandos Customizados', () => {
+    it('Deve fazer cadastro com sucesso - Usando Comandos Customizados', () => {
         cy.cadastro(faker.internet.email() , faker.internet.password())
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá')
     });

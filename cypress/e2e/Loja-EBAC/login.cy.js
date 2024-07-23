@@ -8,6 +8,10 @@ describe('Funcionalidade: Login', () => {
         cy.visit('minha-conta')
     });
 
+    afterEach(() => {
+        cy.screenshot()
+    });
+
     it('Deve fazer o login com sucesso', () => {
         cy.get('#username').type('mauricioteste1992@teste.com')
         cy.get('#password').type('mauricioteste')
@@ -57,11 +61,10 @@ describe('Funcionalidade: Login', () => {
         })
     })
 
-    it.only('Deve fazer login com sucesso - Usando Comandos Customizados', () => {
+    it('Deve fazer login com sucesso - Usando Comandos Customizados', () => {
         //cy.login('mauricioteste1992@teste.com', 'mauricioteste')
         cy.login(login.email, login.senha)
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá')
-        
     });
 
 });
